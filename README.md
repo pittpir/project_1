@@ -22,4 +22,8 @@ This is to replicate a version of the board game Trouble.
 - Build out the HTML/CSS to place individual positions per the Trouble board.  
 - The player will roll a dice or do some random value between 1 and 6 in the middle of the board.  
 - Log who won the game
- 
+
+## Languages and Frameworks Planning to Use
+- JS
+- jQuery
+- HTML/CSS
