@@ -26,6 +26,7 @@ class Move extends Player {
 		this.x++;
 		if (this.x>1) { this.x = 0; }
 		this.turn = whichturn[this.x];
+		$(".whosTurnNow").text(this.turn.name + "'s turn color " + this.turn.color);
 		//console.log(this.x);
 		//console.log(this.turn.color);
 		return this.turn.color;
@@ -134,8 +135,10 @@ function movePieceInPlay(obj,x) {
 	//	console.log("Swap");
 	//	return 0;
 	//}
-	if (newPosition[1].style.borderColor === "blue") 
+
+	if (newPosition[1].style.borderColor !== "rgb(224, 224, 224)") 
 	{
+		sendThemHome(newPosition[1]);
 		console.log("Send them Home");  //-------------------------------------------------------------------------------------------------------------------------
 		return 0;
 	}
@@ -197,7 +200,7 @@ function Home2Play(mainObj,obj,x) {
 
 	let NewPositionArray = $( `.troubleBoard .${ss}Start` ).children();
 	let arrayOut = Object.entries(NewPositionArray)[0];
-	//console.log(arrayOut[1].style.borderColor);
+	console.log(arrayOut[1].style.borderColor);
 		
 	//if the same color is in this position then cannot move
 	if (arrayOut[1].style.borderColor === pickedColorArray[1].className)
@@ -208,8 +211,9 @@ function Home2Play(mainObj,obj,x) {
 	}
 
 	//if another color occupies the space then send them home.
-	if (arrayOut[1].style.borderColor === "blue")
+	if (arrayOut[1].style.borderColor !== "rgb(224, 224, 224)")
 	{
+		//sendThemHome();
 		console.log("Send them home");       //----------------------------------------------------------------------------------------------------------------------
 		return 0;
 	}
@@ -273,6 +277,61 @@ function move2Base (mainArr,diceCnt) {
 	return 0;
 }
 
+//return color to home base
+function sendThemHome (mainArr) {
+	
+	console.log(mainArr);
+	mainArr.style.order = 1;
+
+
+	let newPositionArray = $( ".troubleHome" ).children().filter(function( index ) {
+    	//console.log(this.className);
+    	//console.log(this.className.startsWith(mainArr.style.borderColor));
+    	//let object = {};
+    	//swapArray = [];
+    	//filter out the proper color bases
+    	//let moo = diceCnt - 28;
+    	let text = mainArr.style.borderColor + "Home";
+    	//console.log(moo);
+    	if ( this.className.startsWith(text) )
+    	{
+    		//object = { par: this
+    		//		   chi: $("." + this.className).children() };        //Note:  ES6 allows to set the key from a variable using the []
+    		//swapArray.push(object);
+    		console.log($("." + this.className).children());    //need to find which element is empty in base!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    		//if (this.style.borderColor === "rgb(224, 224, 224)") {
+    		//	obj = $("." + this.className).children().eq(0);
+    		//}
+
+    		
+    		return this;
+    	} 
+  	}) 
+
+	console.log(newPositionArray);
+	console.log(obj);
+	
+	let pickedColorArray = Object.entries(obj)[0];
+	//let homeOut = Object.entries(mainArr)[0];
+	//console.log(mainArr.style.borderColor);
+	//console.log(pickedColorArray[1].style.borderColor);
+		
+	//if the same color is in this position then cannot move
+	if (mainArr.style.borderColor === pickedColorArray[1].style.borderColor)
+	{
+		$( ".statusOut" ).text(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
+		return 1;
+	}
+
+	let cow = $( mainArr ).clone()
+	let horse = $( obj ).clone()
+
+	//the click action resides on the span element and not the div element.
+	$( mainArr ).replaceWith(horse);    //.click( mess2(array1[0]));
+	$( obj ).replaceWith(cow);      //.click( mess2(obj));;
+
+	return 0;
+}
 
 
 /*  //----------------------------------------------------------------------------------------------------------------------------
