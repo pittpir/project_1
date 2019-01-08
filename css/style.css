@@ -1,13 +1,37 @@
 body {
 	background: white;
-	min-width: 1500px: 
+	min-width: 900px: 
 }
 h1 {
 	text-align: center;
 	color: blue;
 	margin: 0 auto;
 	padding: 1px;
+	min-width: 200px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
+img {
+	min-width: 800px;
+
+}
+.spinner{
+	position: relative;
+	top: 230px;
+	left:-960px;
+}
+.spinText {
+	font-size: 96px;
+	color: white;
+
+}
+.status {
+	min-width: 500px;
+	max-width: 500px;
+	white-space: wrap;
+}
+
 .board {
 	justify-content: flex-start;
 	display: flex;
@@ -16,157 +40,319 @@ h1 {
 
 .troubleBoard {
 	justify-content: flex-start;
-	display: inline-flex;
-	border: 1px solid black;
+	display: flex;
+	flex-wrap: nowrap;
+	
 }
 .troubleHome {
 	justify-content: flex-start;
-	display: inline-flex;
-	border: 1px solid black;
+	display: flex;
+	flex-wrap: nowrap;
+	
 }
 .troubleBase {
 	justify-content: flex-start;
-	display: inline-flex;
-	border: 1px solid black;
+	display: flex;
+	flex-wrap: nowrap;
+	
 }
 .posEmpty1 {
 	position: relative;
-	top: 470px;
+	top: -270px;   
 	left:50px;
 }
 .posEmpty2 {
 	position: relative;
-	top: 400px;
-	left:10px;
+	top: -340px;
+	left:5px;
 }
 .posEmpty3 {
 	position: relative;
-	top: 340px;
+	top: -410px;
 	left:-30px;
 }
 .posEmpty4 {
 	position: relative;
-	top: 270px;
+	top: -470px;
 	left:-70px;
 }
 .posEmpty5 {
 	position: relative;
-	top: 210px;
+	top: -530px;
 	left:-90px;
 }
 .posEmpty6 {
 	position: relative;
-	top: 160px;
-	left:-85px;
+	top: -580px;
+	left:-90px;
 }
 .posEmpty7 {
 	position: relative;
-	top: 120px;
+	top: -620px;
 	left:-70px;
 }
 .posEmpty8 {
 	position: relative;
-	top: 90px;
+	top: -650px;
 	left:-50px;
 }
 .posEmpty9 {
 	position: relative;
-	top: 80px;
+	top: -660px;
 	left:-20px;
 }
 .posEmpty10 {
 	position: relative;
-	top: 80px;
+	top: -660px;
 	left: 20px;
 }
 .posEmpty11 {
 	position: relative;
-	top: 80px;
+	top: -660px;
 	left: 50px;
 }
 .posEmpty12 {
 	position: relative;
-	top: 85px;
+	top: -655px;
 	left: 80px;
 }
 .posEmpty13 {
 	position: relative;
-	top: 120px;
+	top: -620px;
 	left: 100px;
 }
 .posEmpty14 {
 	position: relative;
-	top: 160px;
+	top: -580px;
 	left: 120px;
 }
 .posEmpty15 {
 	position: relative;
-	top: 210px;
+	top: -530px;
 	left: 120px;
 }
 .posEmpty16{
 	position: relative;
-	top: 270px;
+	top: -470px;
 	left: 100px;
 }
 .posEmpty17{
 	position: relative;
-	top: 330px;
+	top: -410px;
 	left: 65px;
 }
 .posEmpty18{
 	position: relative;
-	top: 400px;
+	top: -340px;
 	left: 30px;
 }
 .posEmpty19{
 	position: relative;
-	top: 470px;
+	top: -280px;
 	left: -10px;
 }
 .posEmpty20{
 	position: relative;
-	top: 530px;
+	top: -215px;
 	left: -90px;
 }
 .posEmpty21{
 	position: relative;
-	top: 580px;
+	top: -165px;
 	left: -185px;
 }
 .posEmpty22{
 	position: relative;
-	top: 620px;
+	top: -125px;
 	left: -290px;
 }
 .posEmpty23{
 	position: relative;
-	top: 630px;
+	top: -115px;
 	left: -415px;
 }
 .posEmpty24{
 	position: relative;
-	top: 630px;
+	top: -115px;
 	left: -540px;
 }
-.posEmpty25{
+.posEmpty25 {
 	position: relative;
-	top: 630px;
+	top: -115px;
 	left: -660px;
 }
-.posEmpty26{
+.posEmpty26 {
 	position: relative;
-	top: 620px;
+	top: -125px;
 	left: -780px;
 }
-.posEmpty27{
+.posEmpty27 {
 	position: relative;
-	top: 580px;
+	top: -165px;
 	left: -890px;
 }
-.posEmpty28{
+.posEmpty28 {
 	position: relative;
-	top: 530px;
+	top: -215px;
 	left: -990px;
 }
-
+.blueHome1 {
+	position: relative;
+	top: -150px;
+	left: 630px;
+}
+.blueHome2 {
+	position: relative;
+	top: -190px;
+	left: 630px;
+}
+.blueHome3 {
+	position: relative;
+	top: -220px;
+	left: 630px;
+}
+.blueHome4 {
+	position: relative;
+	top: -260px;
+	left: 620px;
+}
+.redHome1 {
+	position: relative;
+	top: -640px;
+	left: 540px;
+}
+.redHome2 {
+	position: relative;
+	top: -670px;
+	left: 460px;
+}
+.redHome3 {
+	position: relative;
+	top: -700px;
+	left: 390px;
+}
+.redHome4 {
+	position: relative;
+	top: -720px;
+	left: 310px;
+}
+.yellowHome1 {
+	position: relative;
+	top: -150px;
+	left: -180px;
+}
+.yellowHome2 {
+	position: relative;
+	top: -180px;
+	left: -270px;
+}
+.yellowHome3 {
+	position: relative;
+	top: -220px;
+	left: -350px;
+}
+.yellowHome4 {
+	position: relative;
+	top: -260px;
+	left: -420px;
+}
+.greenHome1 {
+	position: relative;
+	top: -640px;
+	left: -435px;
+}
+.greenHome2 {
+	position: relative;
+	top: -670px;
+	left: -440px;
+}
+.greenHome3 {
+	position: relative;
+	top: -700px;
+	left: -440px;
+}
+.greenHome4 {
+	position: relative;
+	top: -720px;
+	left: -440px;
+}
+.blueBase1 {
+	position: relative;
+	top: -300px;
+	left: 610px;
+}
+.blueBase2 {
+	position: relative;
+	top: -330px;
+	left: 530px;
+}
+.blueBase3 {
+	position: relative;
+	top: -365px;
+	left: 450px;
+}
+.blueBase4 {
+	position: relative;
+	top: -400px;
+	left: 370px;
+}
+.redBase1 {
+	position: relative;
+	top: -660px;
+	left: 430px;
+}
+.redBase2 {
+	position: relative;
+	top: -635px;
+	left: 350px;
+}
+.redBase3 {
+	position: relative;
+	top: -605px;
+	left: 275px;
+}
+.redBase4 {
+	position: relative;
+	top: -570px;
+	left: 200px;
+}
+.yellowBase1 {
+	position: relative;
+	top: -290px;
+	left: -170px;
+}
+.yellowBase2 {
+	position: relative;
+	top: -320px;
+	left: -170px;
+}
+.yellowBase3 {
+	position: relative;
+	top: -360px;
+	left: -170px;
+}
+.yellowBase4 {
+	position: relative;
+	top: -390px;
+	left: -170px;
+}
+.greenBase1 {
+	position: relative;
+	top: -660px;
+	left: -320px;
+}
+.greenBase2 {
+	position: relative;
+	top: -630px;
+	left: -320px;
+}
+.greenBase3 {
+	position: relative;
+	top: -600px;
+	left: -320px;
+}
+.greenBase4 {
+	position: relative;
+	top: -570px;
+	left: -320px;
+}

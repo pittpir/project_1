@@ -5,32 +5,49 @@ class Player {
 	constructor(name,color) {
 		this.name = name;
 		this.color = color;
+		//this.piecePosition = [0,0,0,0]
 	}
 }
 
 class Move extends Player {
-	constructor (name,color) {
+	constructor (player1,player2,player3,player4,name,color) {
 		super(name,color);
 		this.turn = "";
 		this.x = 0;
+		this.player1 = player1;
+		this.player2 = player2;
+		this.player3 = player3;
+		this.player4 = player4;
+		this.diceCnt = 6;
 	}
 
 	newturn () {
-		let whichturn = ["blue","red"];
+		let whichturn = [player1,player2];
 		this.x++;
 		if (this.x>1) { this.x = 0; }
 		this.turn = whichturn[this.x];
-		console.log(this.x);
-		return this.turn;
+		//console.log(this.x);
+		//console.log(this.turn.color);
+		return this.turn.color;
 	}
 }
 
 let player1 = new Player("Chris","blue");
 let player2 = new Player("Cassie","red");
-let flow = new Move();
+let flow = new Move(player1,player2);
 
-flow.turn = "blue";
+//flow.turn = "blue";
+console.log(flow.newturn());
 //console.log(flow.newturn());
+
+
+$( ".spin" ).click(function() {
+	let diceCnt = Math.floor(Math.random() * (7 - 1) + 1);
+	$(".spinText").text(diceCnt);
+	flow.diceCnt = diceCnt;
+	return 0;
+}); 
+
 
 //**************************************************************************************
 //This creates the click function for the empty spaces on the board
@@ -44,46 +61,71 @@ $( ".troubleBoard" ).children().click(function() {
 //**************************************************************************************
 //Move a piece on the board
 //**************************************************************************************
-let diceCnt = 3;
+//let diceCnt = 3;
 function movePieceInPlay(obj,x) {
-	let array1 = $( ".troubleBoard span" ).children();
-	let moveCnt = diceCnt+x;
+	let newPositionArray = $( ".troubleBoard span" ).children();
+	let moveCnt = flow.diceCnt+x;
 	let oldMoveCnt = 0;
 	
+	//console.log("Move = " + moveCnt);
 
 	if (moveCnt > 27) {
-		console.log(moveCnt);
+		//console.log(moveCnt);
 		moveCnt = moveCnt - 28;
 	}
 	//let array2 = $( ".troubleBoard" ).children();
 	//let x = $(array2).index();
 	//console.log(array1);
-	console.log(obj);
-	let array = Object.entries(obj)[0];
-	//console.log(array);
-	console.log("Old Color: " + array[1].style.borderColor);
-	let array2 = Object.entries(array1)[moveCnt];
-	console.log("Position Ahead: " + array2[1].style.borderColor);
-	//console.log("Order Ahead: " + array[1].style.order);
-	console.log("Class Name: " + array[1].className);
-	oldMoveCnt = parseFloat(array[1].style.order);
-	array[1].style.order = (diceCnt + parseFloat(array[1].style.order));
-	console.log("Order Ahead: " + array[1].style.order);
-
-	if ((array[1].style.order > 28) && (array[1].style.order < 33)  ) {
-		//goto into its base position
-		console.log("Made it to base");   //-------------------------------------------------------------------------------------------------------------------------
-		return 0;
-	} else if (array[1].style.order > 33) {
-		console.log("Cannot move");
-		array[1].style.order = oldMoveCnt;
+	//console.log(obj);
+	let currentPosition = Object.entries(obj)[0];
+	let ss = currentPosition[1].className;   //this should return the color of the peg that was selected
+	
+	//Is the player picking the correct color?
+	if (ss !== flow.turn.color)
+	{
+		$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
+		//console.log("You cannot move this Piece");
 		return 0;
 	}
 
-	if (array[1].style.borderColor === array2[1].style.borderColor)
+	//console.log(array);
+	//console.log("Old Position: " + currentPosition[1].style.borderColor);
+	let newPosition = Object.entries(newPositionArray)[moveCnt];
+	//console.log("Position Ahead: " + newPosition[1].style.borderColor);
+	//console.log("Order Ahead: " + array[1].style.order);
+	//console.log("Class Name: " + currentPosition[1].className);
+	oldMoveCnt = parseFloat(currentPosition[1].style.order);    //-------------------------------------------------------------------works
+
+	currentPosition[1].style.order = (flow.diceCnt + oldMoveCnt);
+	//console.log("Order Ahead: " + currentPosition[1].style.order);
+
+
+	//move2Base(currentPosition[1],29);
+
+	if ((currentPosition[1].style.order > 28) && (currentPosition[1].style.order < 33)  ) {
+		//goto into its base position
+		let ret = move2Base(currentPosition[1],currentPosition[1].style.order);
+		if (!ret) {
+			$( ".statusOut" ).text(`Congrat ${flow.turn.name} -- you made a piece to base!`);
+			flow.newturn();
+			return 0;
+		}
+		else {
+			currentPosition[1].style.order = oldMoveCnt;
+			return 0;
+		}
+		//console.log("Made it to base");   //-------------------------------------------------------------------------------------------------------------------------
+		
+	} else if (currentPosition[1].style.order > 33) {
+		$( ".statusOut" ).text(`${flow.turn.name} -- you rolled too high and overshot the base.`);
+		currentPosition[1].style.order = oldMoveCnt;
+		return 0;
+	}
+
+	if (currentPosition[1].style.borderColor === newPosition[1].style.borderColor)
 	{
-		console.log("Cannot move as same color cannot occupy same space");
-		array[1].style.order = oldMoveCnt;
+		$( ".statusOut" ).text(`${flow.turn.name} -- same color cannot occupy the same space.`);
+		currentPosition[1].style.order = oldMoveCnt;
 		return 0;
 	}
 
@@ -92,7 +134,7 @@ function movePieceInPlay(obj,x) {
 	//	console.log("Swap");
 	//	return 0;
 	//}
-	if (array2[1].style.borderColor === "blue") 
+	if (newPosition[1].style.borderColor === "blue") 
 	{
 		console.log("Send them Home");  //-------------------------------------------------------------------------------------------------------------------------
 		return 0;
@@ -107,14 +149,15 @@ function movePieceInPlay(obj,x) {
 
 
 		let cow = $( obj ).clone()
-		let horse = $( array1[moveCnt] ).clone()
+		let horse = $( newPositionArray[moveCnt] ).clone()
 		//console.log(cow)
 		//console.log(horse)
 
 		//gotta put back the event
 		$( obj ).replaceWith(horse);                   //.click( mess2(array1[moveCnt]),moveCnt);
-		$( array1[moveCnt] ).replaceWith(cow);         //.click( mess2(obj),x);;
-		array1[moveCnt] = cow;
+		$( newPositionArray[moveCnt] ).replaceWith(cow);         //.click( mess2(obj),x);;
+		newPositionArray[moveCnt] = cow;
+		flow.newturn();
 		//swapArray = [];	
 	//}
 }
@@ -124,7 +167,7 @@ function movePieceInPlay(obj,x) {
 //**************************************************************************************
 $( ".troubleHome" ).children().click(function() {
 	let x = $(this).index();
-	console.log(x);
+	//console.log(x);
 	Home2Play(this, $( ".troubleHome span" ).children().eq(x),x);	
 }); 
 
@@ -144,9 +187,10 @@ function Home2Play(mainObj,obj,x) {
 	let ss = pickedColorArray[1].className;   //this should return the color of the peg that was picked
 	
 	//Is the player picking the correct color?
-	if (ss !== flow.turn)
+	if (ss !== flow.turn.color)
 	{
-		console.log("You cannot move this piece as it is not your Color");
+		$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
+		//console.log("You cannot move this Piece");
 		return 0;
 	}
 
@@ -155,12 +199,12 @@ function Home2Play(mainObj,obj,x) {
 	let arrayOut = Object.entries(NewPositionArray)[0];
 	//console.log(arrayOut[1].style.borderColor);
 		
-	//if the same color is n this position then cannot move
+	//if the same color is in this position then cannot move
 	if (arrayOut[1].style.borderColor === pickedColorArray[1].className)
 	{
-		console.log("Cannot move");
+		$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move a piece out of home.  Try another piece or pass`);
+		//console.log("Cannot move");
 		return 0;
-
 	}
 
 	//if another color occupies the space then send them home.
@@ -178,9 +222,56 @@ function Home2Play(mainObj,obj,x) {
 	$( pickedColorArray[1] ).replaceWith(horse);    //.click( mess2(array1[0]));
 	$( NewPositionArray[0] ).replaceWith(cow);      //.click( mess2(obj));;
 	$(mainObj).unbind();  //remove the action as the space is now empty
+	flow.newturn();
 }
 
 
+
+function move2Base (mainArr,diceCnt) {
+	let obj = {}
+	let newPositionArray = $( ".troubleBase" ).children().filter(function( index ) {
+    	//console.log(this.className);
+    	//console.log(this.className.startsWith(mainArr.style.borderColor));
+    	//let object = {};
+    	//swapArray = [];
+    	//filter out the proper color bases
+    	let moo = diceCnt - 28;
+    	let text = mainArr.style.borderColor + "Base" + moo;
+    	//console.log(moo);
+    	if ( this.className.startsWith(text) )
+    	{
+    		//object = { par: this
+    		//		   chi: $("." + this.className).children() };        //Note:  ES6 allows to set the key from a variable using the []
+    		//swapArray.push(object);
+    		//console.log($("." + this.className).children().eq(0));
+    		obj = $("." + this.className).children().eq(0);
+    		return this;
+    	} 
+  	}) 
+	//console.log(newPositionArray);
+	//console.log(obj);
+	
+	let pickedColorArray = Object.entries(obj)[0];
+	//let homeOut = Object.entries(mainArr)[0];
+	//console.log(mainArr.style.borderColor);
+	//console.log(pickedColorArray[1].style.borderColor);
+		
+	//if the same color is in this position then cannot move
+	if (mainArr.style.borderColor === pickedColorArray[1].style.borderColor)
+	{
+		$( ".statusOut" ).text(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
+		return 1;
+	}
+
+	let cow = $( mainArr ).clone()
+	let horse = $( obj ).clone()
+
+	//the click action resides on the span element and not the div element.
+	$( mainArr ).replaceWith(horse);    //.click( mess2(array1[0]));
+	$( obj ).replaceWith(cow);      //.click( mess2(obj));;
+
+	return 0;
+}
 
 
 
