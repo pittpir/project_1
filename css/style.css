@@ -1,20 +1,172 @@
 body {
 	background: white;
+	min-width: 1500px: 
 }
 h1 {
 	text-align: center;
 	color: blue;
+	margin: 0 auto;
+	padding: 1px;
 }
-.box {
-    display: flex;
+.board {
+	justify-content: flex-start;
+	display: flex;
+	border: 1px solid black;
 }
 
-/*
-.div2 {
-    background: black;
-    border:5px solid #E0E0E0;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
+.troubleBoard {
+	justify-content: flex-start;
+	display: inline-flex;
+	border: 1px solid black;
 }
-*/
+.troubleHome {
+	justify-content: flex-start;
+	display: inline-flex;
+	border: 1px solid black;
+}
+.troubleBase {
+	justify-content: flex-start;
+	display: inline-flex;
+	border: 1px solid black;
+}
+.posEmpty1 {
+	position: relative;
+	top: 470px;
+	left:50px;
+}
+.posEmpty2 {
+	position: relative;
+	top: 400px;
+	left:10px;
+}
+.posEmpty3 {
+	position: relative;
+	top: 340px;
+	left:-30px;
+}
+.posEmpty4 {
+	position: relative;
+	top: 270px;
+	left:-70px;
+}
+.posEmpty5 {
+	position: relative;
+	top: 210px;
+	left:-90px;
+}
+.posEmpty6 {
+	position: relative;
+	top: 160px;
+	left:-85px;
+}
+.posEmpty7 {
+	position: relative;
+	top: 120px;
+	left:-70px;
+}
+.posEmpty8 {
+	position: relative;
+	top: 90px;
+	left:-50px;
+}
+.posEmpty9 {
+	position: relative;
+	top: 80px;
+	left:-20px;
+}
+.posEmpty10 {
+	position: relative;
+	top: 80px;
+	left: 20px;
+}
+.posEmpty11 {
+	position: relative;
+	top: 80px;
+	left: 50px;
+}
+.posEmpty12 {
+	position: relative;
+	top: 85px;
+	left: 80px;
+}
+.posEmpty13 {
+	position: relative;
+	top: 120px;
+	left: 100px;
+}
+.posEmpty14 {
+	position: relative;
+	top: 160px;
+	left: 120px;
+}
+.posEmpty15 {
+	position: relative;
+	top: 210px;
+	left: 120px;
+}
+.posEmpty16{
+	position: relative;
+	top: 270px;
+	left: 100px;
+}
+.posEmpty17{
+	position: relative;
+	top: 330px;
+	left: 65px;
+}
+.posEmpty18{
+	position: relative;
+	top: 400px;
+	left: 30px;
+}
+.posEmpty19{
+	position: relative;
+	top: 470px;
+	left: -10px;
+}
+.posEmpty20{
+	position: relative;
+	top: 530px;
+	left: -90px;
+}
+.posEmpty21{
+	position: relative;
+	top: 580px;
+	left: -185px;
+}
+.posEmpty22{
+	position: relative;
+	top: 620px;
+	left: -290px;
+}
+.posEmpty23{
+	position: relative;
+	top: 630px;
+	left: -415px;
+}
+.posEmpty24{
+	position: relative;
+	top: 630px;
+	left: -540px;
+}
+.posEmpty25{
+	position: relative;
+	top: 630px;
+	left: -660px;
+}
+.posEmpty26{
+	position: relative;
+	top: 620px;
+	left: -780px;
+}
+.posEmpty27{
+	position: relative;
+	top: 580px;
+	left: -890px;
+}
+.posEmpty28{
+	position: relative;
+	top: 530px;
+	left: -990px;
+}
+
