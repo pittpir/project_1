@@ -5,6 +5,7 @@ class Player {
 	constructor(name,color) {
 		this.name = name;
 		this.color = color;
+		this.win = 0;
 	}
 }
 
@@ -20,7 +21,7 @@ class Move extends Player {
 		//this.player3 = player3;
 		//this.player4 = player4;
 		this.diceCnt = 6;
-		this.gameStarted = false;
+		this.spinDice = false;
 	}
 
 	newturn () {		
@@ -31,6 +32,8 @@ class Move extends Player {
 		//console.log(this.turn.color);
 		this.x++;
 		if (this.x>this.maxX) { this.x = 0; }
+		this.spinDice = false;
+		statusOut(`Please Spin the Dice!`);
 		return this.turn.color;
 	}
 }
@@ -87,6 +90,7 @@ $( ".startGame" ).click(function() {
 
 	flow = new Move(playerArray);
 	flow.newturn();
+	$( ".startGame" ).prop("disabled", "true");
 	return 0;
 }); 
 
@@ -104,14 +108,49 @@ function statusOut (text) {
 }
 
 //**************************************************************************************
+//Pass Function  
+//**************************************************************************************
+$( ".pass" ).click(function() {
+	
+	if (flow.spinDice) {
+		flow.spinDice = false;
+		flow.newturn();
+		return 0;
+	} else {
+		statusOut(`Please Spin the Dice!`);
+	}
+
+	return 0;
+}); 
+
+//**************************************************************************************
 //This is the dice.  Add the click function to the button.  
 //**************************************************************************************
 $( ".spin" ).click(function() {
-	let diceCnt = Math.floor(Math.random() * (7 - 1) + 1);
-	$(".spinText").text(diceCnt);
 	
+	if (flow.spinDice) {
+		statusOut(`You already spun the dice!`);
+		return 0;
+	}
+
+	let diceCnt = Math.floor(Math.random() * (7 - 1) + 1);
+	
+	if (diceCnt === 6)
+		$(".dicePic").prop("src","pictures/six_small.png").effect( "shake", 400 );
+	if (diceCnt === 5)
+		$(".dicePic").prop("src","pictures/five_small.png").effect( "shake", 400 );
+	if (diceCnt === 4)
+		$(".dicePic").prop("src","pictures/four_small.png").effect( "shake", 400 );
+	if (diceCnt === 3)
+		$(".dicePic").prop("src","pictures/three_small.png").effect( "shake", 400 );
+	if (diceCnt === 2)
+		$(".dicePic").prop("src","pictures/two_small.png").effect( "shake", 400 );
+	if (diceCnt === 1)
+		$(".dicePic").prop("src","pictures/one_small.png").effect( "shake", 400 );
+
 	if (typeof(flow) !== "number") {
 		flow.diceCnt = diceCnt;
+		flow.spinDice = true;
 	}
 	
 	return 0;
@@ -137,6 +176,11 @@ function movePieceInPlay(obj,x) {
 
 	if (typeof(flow) === "number") {
 		statusOut(`Please Start the Game`);
+		return 0;
+	}
+
+	if (flow.spinDice === false) {
+		statusOut(`Please Spin the Dice!`);
 		return 0;
 	}
 	
@@ -168,8 +212,8 @@ function movePieceInPlay(obj,x) {
 			//$( ".statusOut" ).text(`Congrat ${flow.turn.name} -- you made a piece to base!`);
 			flow.newturn();
 			return 0;
-		}
-		else {
+		} else {
+			statusOut(`${flow.turn.name} -- you have a piece already in the base at the given space.  Pick another piece or pass.`);
 			currentPosition[1].style.order = oldMoveCnt;
 			return 0;
 		}		
@@ -202,6 +246,13 @@ function movePieceInPlay(obj,x) {
 		$( obj ).replaceWith(horse);
 		$( newPositionArray[moveCnt] ).replaceWith(cow);
 		newPositionArray[moveCnt] = cow;
+		
+		if (flow.diceCnt === 6) {
+			statusOut(`${flow.turn.name} -- Can Spin again`);
+			flow.spinDice = false;
+			return 0;
+		}
+
 		flow.newturn();
 }
 
@@ -225,6 +276,14 @@ function Home2Play(mainObj,obj,x) {
 		return 0;
 	}
 
+	if (flow.spinDice === false) {
+		statusOut(`Please Spin the Dice!`);
+		return 0;
+	}
+	if (flow.diceCnt !== 6) {
+		statusOut(`Cannot move piece out of home unless dice is a 6!  Press Pass if you have no moves!`);
+		return 0;
+	}
 
 //------------------------------------------------------------------------------------------------
 //Need to place the OBJ into an array so I can parse out the DOM. Only need the 2nd elemnt in the array
@@ -271,6 +330,13 @@ function Home2Play(mainObj,obj,x) {
 	$( pickedColorArray[1] ).replaceWith(horse);
 	$( NewPositionArray[0] ).replaceWith(cow);
 	$(mainObj).unbind();  							//remove the action as the space is now empty
+	
+	if (flow.diceCnt === 6) {
+		statusOut(`${flow.turn.name} -- Can Spin again`);
+		flow.spinDice = false;
+		return 0;
+	}
+
 	flow.newturn();
 }
 
@@ -312,6 +378,13 @@ function move2Base (mainArr,diceCnt) {
 	//the click action resides on the span element and not the div element.
 	$( mainArr ).replaceWith(horse);
 	$( obj ).replaceWith(cow);
+
+//determine a winner ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	flow.turn.win = flow.turn.win + 1;
+	if (flow.turn.win === 4)
+	{
+		statusOut(`${flow.turn.name} Won the Game`);
+	}
 
 	return 0;
 }

@@ -12,19 +12,16 @@ h1 {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-img {
-	min-width: 800px;
 
+.dicePic {
+	position: relative;
+	top: -560px;
+	left:350px;
 }
 .spinner{
 	position: relative;
-	top: 230px;
-	left:-960px;
-}
-.spinText {
-	font-size: 96px;
-	color: white;
-
+	top: 370px;
+	left:-985px;
 }
 .status {
 	min-width: 500px;
