@@ -139,7 +139,7 @@ function movePieceInPlay(obj,x) {
 	if (newPosition[1].style.borderColor !== "rgb(224, 224, 224)") 
 	{
 		sendThemHome(newPosition[1]);
-		console.log("Send them Home");  //-------------------------------------------------------------------------------------------------------------------------
+		movePieceInPlay(obj,x)
 		return 0;
 	}
 
@@ -153,8 +153,9 @@ function movePieceInPlay(obj,x) {
 
 		let cow = $( obj ).clone()
 		let horse = $( newPositionArray[moveCnt] ).clone()
-		//console.log(cow)
-		//console.log(horse)
+		console.log("------------------------------------------------------");
+		console.log(cow)
+		console.log(horse)
 
 		//gotta put back the event
 		$( obj ).replaceWith(horse);                   //.click( mess2(array1[moveCnt]),moveCnt);
@@ -177,7 +178,6 @@ $( ".troubleHome" ).children().click(function() {
 //************************************************************************************************
 //Put Colors into play
 //************************************************************************************************
-
 let swapArray2 = [];
 function Home2Play(mainObj,obj,x) {
 	
@@ -210,11 +210,14 @@ function Home2Play(mainObj,obj,x) {
 		return 0;
 	}
 
+
+
+
 	//if another color occupies the space then send them home.
 	if (arrayOut[1].style.borderColor !== "rgb(224, 224, 224)")
 	{
-		//sendThemHome();
-		console.log("Send them home");       //----------------------------------------------------------------------------------------------------------------------
+		sendThemHome(arrayOut[1]);
+		Home2Play(mainObj,obj,x)
 		return 0;
 	}
 
@@ -230,7 +233,9 @@ function Home2Play(mainObj,obj,x) {
 }
 
 
-
+//************************************************************************************************
+//Put Colors into Base from the play area
+//************************************************************************************************
 function move2Base (mainArr,diceCnt) {
 	let obj = {}
 	let newPositionArray = $( ".troubleBase" ).children().filter(function( index ) {
@@ -277,9 +282,13 @@ function move2Base (mainArr,diceCnt) {
 	return 0;
 }
 
-//return color to home base
+//************************************************************************************************
+//Return colors to home base after being trampled upon from another piece
+//************************************************************************************************
 function sendThemHome (mainArr) {
-	
+	let obj = {};
+	let objTest = {};
+	let brokenHome = [];
 	console.log(mainArr);
 	mainArr.style.order = 1;
 
@@ -298,12 +307,21 @@ function sendThemHome (mainArr) {
     		//object = { par: this
     		//		   chi: $("." + this.className).children() };        //Note:  ES6 allows to set the key from a variable using the []
     		//swapArray.push(object);
-    		console.log($("." + this.className).children());    //need to find which element is empty in base!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    		//console.log($("." + this.className).children());    //need to find which element is empty in base!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     		//if (this.style.borderColor === "rgb(224, 224, 224)") {
     		//	obj = $("." + this.className).children().eq(0);
     		//}
+    		objTest = $("." + this.className).children().eq(0);
+    		brokenHome = Object.entries(objTest)[0];
 
-    		
+    		if (brokenHome[1].style.borderColor === "rgb(224, 224, 224)") {
+    			obj = $("." + this.className).children().eq(0);
+    			$(this).click(function() { let x = $(this).index(); Home2Play(this, $( ".troubleHome span" ).children().eq(x),x);	 });
+    		}
+
+    		//$(this).unbind();  //remove the action as the space is now empty
+    		//$(this).click(function() { let x = $(this).index(); Home2Play(this, $( ".troubleHome span" ).children().eq(x),x);	 });
+	
     		return this;
     	} 
   	}) 
