@@ -28,6 +28,8 @@ class Move extends Player {
 		this.turn = playerArray[this.x];
 		$(".whosTurnNow").text(this.turn.name + "'s turn color " + this.turn.color);
 		$(".whosTurnNow").css("color", this.turn.color);
+		$(".pass").css("background-color", this.turn.color);
+		$(".spin").css("background-color", this.turn.color);
 		//console.log(this.x);
 		//console.log(this.turn.color);
 		this.x++;
@@ -217,7 +219,7 @@ function movePieceInPlay(obj,x) {
 			currentPosition[1].style.order = oldMoveCnt;
 			return 0;
 		}		
-	} else if (currentPosition[1].style.order > 33) {
+	} else if (currentPosition[1].style.order > 32) {
 		statusOut(`${flow.turn.name} -- you rolled too high and overshot the base.`);
 		//$( ".statusOut" ).text(`${flow.turn.name} -- you rolled too high and overshot the base.`);
 		currentPosition[1].style.order = oldMoveCnt;
@@ -304,7 +306,7 @@ function Home2Play(mainObj,obj,x) {
 
 	let NewPositionArray = $( `.troubleBoard .${ss}Start` ).children();
 	let arrayOut = Object.entries(NewPositionArray)[0];
-	console.log(arrayOut[1].style.borderColor);
+	//console.log(arrayOut[1].style.borderColor);
 		
 	//if the same color is in this position then cannot move
 	if (arrayOut[1].style.borderColor === pickedColorArray[1].className)
@@ -396,7 +398,7 @@ function sendThemHome (mainArr) {
 	let obj = {};
 	let objTest = {};
 	let brokenHome = [];
-	console.log(mainArr);
+	//console.log(mainArr);
 	mainArr.style.order = 1;
 
 //-----------------------------------------------------------------------------------------------
