@@ -14,18 +14,15 @@
   	src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   	crossorigin="anonymous"></script>
-  	
 </head>
 <body>
 <h1>Trouble Board Game</h1>  
-
-
   <div class="board">
-    <img class="defender" src="pictures/trouble-game-board5.jpg"
+    <img class="troubleBoardPic" src="pictures/trouble-game-board5.jpg"
       alt="Defender 1"
       width="800"
       height="700">   
-<div class="buttons">
+  <div class="buttons">
     <fieldset class="playerField">
       <legend class="playerFieldLegend">Player Names and Color</legend>
       <div>
@@ -71,8 +68,6 @@
           <button type="button" class="startGame">Start Game</button>
     </fieldset>
 
-
-     
     <fieldset class="whosTurn">
       <legend>Who's Turn is it?</legend>
       <label class="whosTurnNow">Please Start the game!</label>
@@ -98,15 +93,11 @@
       </ol>
     </fieldset>    
   </div> 
-  <div class="spinner">
-    <!-- <div class="or"><label class="spinText">6</label></div>  -->
-    <button type="button" class="spin">Spin</button>
-    <button type="button" class="pass">Pass</button> 
-</div>      
+     
 </div>
 
 <!-- 28 Position around the board -->
-<div class="troubleBoard">
+  <div class="troubleBoard">
     <span class="posEmpty1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="posEmpty2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="posEmpty3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
@@ -135,8 +126,8 @@
     <span class="posEmpty26"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="posEmpty27"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="posEmpty28 yellowStart"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-</div>
-<div class="troubleHome">
+  </div>
+  <div class="troubleHome">
     <span class="blueHome1"> <div class="blue" style="order:1; background: black; border:10px solid blue; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="blueHome2"> <div class="blue" style="order:1; background: black; border:10px solid blue; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="blueHome3"> <div class="blue" style="order:1; background: black; border:10px solid blue; border-radius: 50%; width: 20px; height: 20px;"></div></span>
@@ -154,8 +145,8 @@
     <span class="greenHome3"> <div class="green" style="order:1; background: black; border:10px solid green; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="greenHome4"> <div class="green" style="order:1; background: black; border:10px solid green; border-radius: 50%; width: 20px; height: 20px;"></div></span>
 
-</div>
-<div class="troubleBase">
+  </div>
+  <div class="troubleBase">
     <span class="blueBase1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="blueBase2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="blueBase3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
@@ -172,72 +163,15 @@
     <span class="greenBase2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="greenBase3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
     <span class="greenBase4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-</div>
-<div>
-  <img class="dicePic" src="pictures/six_small.png" alt="Dice">
-</div>
- <!--   <span class="blueHome2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueHome3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueHome4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueStart1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueStart2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueStart3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="blueStart4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowHome1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowHome2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowHome3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowHome4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowStart1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowStart2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowStart3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="YellowStart4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redHome1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redHome2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redHome3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redHome4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redStart1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redStart2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redStart3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="redStart4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenHome1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenHome2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenHome3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenHome4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenStart1"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenStart2"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenStart3"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
-    <span class="greenStart4"> <div class="empty" style="background: black; border:10px solid #E0E0E0; border-radius: 50%; width: 20px; height: 20px;"></div></span>
--->
-
-
-
-
-
-
-<!--
-  <div class="redPiece">
-          <div class="red1" style="background: white; border: 7px solid red; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="red2" style="background: white; border: 7px solid red; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="red3" style="background: white; border: 7px solid red; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="red4" style="background: white; border: 7px solid red; border-radius: 50%; width: 10px; height: 10px;"></div>
   </div>
-  <div class="bluePiece">
-          <div class="blue1" style="background: white; border: 7px solid blue; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="blue2" style="background: white; border: 7px solid blue; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="blue3" style="background: white; border: 7px solid blue; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="blue4" style="background: white; border: 7px solid blue; border-radius: 50%; width: 10px; height: 10px;"></div>
+
+  <div>
+    <img class="dicePic" src="pictures/six_small.png" alt="Dice">
   </div>
-  <div class="noPiece">
-          <div class="empty1" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty2" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty3" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty4" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty5" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty6" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-          <div class="empty7" style="background: black; border:5px solid #E0E0E0; border-radius: 50%; width: 10px; height: 10px;"></div>
-  </div>
--->
-  
+  <div class="spinner">
+    <button type="button" class="spin">Spin</button>
+    <button type="button" class="pass">Pass</button> 
+  </div> 
   <script src="./js/app.js"></script>
 </body>
 </html>  

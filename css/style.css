@@ -11,27 +11,34 @@ h1 {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	font-size: 64px;
+}
+.troubleBoardPic {
+	min-width: 800px;
 }
 .instructions {
 	max-width: 700px;
+	max-height: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .playerField {
 	display: inline-block;
 
 }
 .startGame {
-  background-color: green;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 24px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
+	background-color: green;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 24px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
   	position: relative;
 	top: 3px;
 	left:80px;
@@ -39,50 +46,50 @@ h1 {
 }
 .startGame:hover {opacity: 1}
 .startGame:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+	background-color: #3e8e41;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
 }
 .spin {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 24px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
+	background-color: #f4511e;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 24px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
   	position: relative;
-	top: 370px;
-	left:-1195px;
+	top: -560px;
+	left:340px;
 	font-family: 'Shrikhand', cursive;
 }
 .spin:hover {opacity: 1}
 .spin:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+	background-color: #3e8e41;
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
 }
 .pass {
-  background-color: #f4511e;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 24px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.3s;
-  display: inline-block;
-  text-decoration: none;
-  cursor: pointer;
+	background-color: #f4511e;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	font-size: 24px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
   	position: relative;
-	top: 180px;
-	left:-1325px;
+	top: -745px;
+	left:205px;
 	font-family: 'Shrikhand', cursive;
 }
 .pass:hover {opacity: 1}
@@ -99,8 +106,7 @@ h1 {
 }
 
 .status {
-	min-width: 500px;
-	max-width: 500px;
+	
 	white-space: wrap;
 }
 .board {
@@ -113,7 +119,6 @@ h1 {
 	justify-content: flex-start;
 	display: flex;
 	flex-wrap: nowrap;
-	
 }
 .troubleHome {
 	justify-content: flex-start;

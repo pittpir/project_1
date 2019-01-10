@@ -85,6 +85,7 @@ $( ".startGame" ).click(function() {
 	if ((playerArray.length < 2))
 	{
 		statusOut(`Must have 2+ players to begin!`);
+		playerArray = [];
 		return 0;
 	}
 
@@ -118,7 +119,6 @@ $( ".pass" ).click(function() {
 	} else {
 		statusOut(`Please Spin the Dice!`);
 	}
-
 	return 0;
 }); 
 
@@ -156,7 +156,6 @@ $( ".spin" ).click(function() {
 	return 0;
 }); 
 
-
 //**************************************************************************************
 //This creates the click function for the empty spaces on the board
 //**************************************************************************************
@@ -168,7 +167,6 @@ $( ".troubleBoard" ).children().click(function() {
 //**************************************************************************************
 //Move a piece on the board
 //**************************************************************************************
-//let diceCnt = 3;
 function movePieceInPlay(obj,x) {
 	let newPositionArray = $( ".troubleBoard span" ).children();
 	let moveCnt = flow.diceCnt+x;
@@ -195,8 +193,6 @@ function movePieceInPlay(obj,x) {
 	if (ss !== flow.turn.color)
 	{
 		statusOut(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
-		//$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
-		return 0;
 	}
 
 	let newPosition = Object.entries(newPositionArray)[moveCnt];
@@ -246,23 +242,22 @@ function movePieceInPlay(obj,x) {
 		movePieceInPlay(obj,x)
 		return 0;
 	}
-
-		let cow = $( obj ).clone()
-		let horse = $( newPositionArray[moveCnt] ).clone()
-
-		//gotta put back the event
-		$( obj ).replaceWith(horse);
-		$( newPositionArray[moveCnt] ).replaceWith(cow);
-		newPositionArray[moveCnt] = cow;
 		
-		if (flow.diceCnt === 6) {
-			statusOut(`${flow.turn.name} -- Can Spin again`);
-			$(".spin").css("background-color", flow.turn.color);
-			flow.spinDice = false;
-			return 0;
-		}
+	let cow = $( obj ).clone()
+	let horse = $( newPositionArray[moveCnt] ).clone()
 
-		flow.newturn();
+	//gotta put back the event
+	$( obj ).replaceWith(horse);
+	$( newPositionArray[moveCnt] ).replaceWith(cow);
+	newPositionArray[moveCnt] = cow;
+		
+	if (flow.diceCnt === 6) {
+		statusOut(`${flow.turn.name} -- Can Spin again`);
+		$(".spin").css("background-color", flow.turn.color);
+		flow.spinDice = false;
+		return 0;
+	}
+	flow.newturn();
 }
 
 //**************************************************************************************
@@ -304,19 +299,16 @@ function Home2Play(mainObj,obj,x) {
 	if (ss !== flow.turn.color)
 	{
 		statusOut(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
-		//$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
 		return 0;
 	}
 
 	let NewPositionArray = $( `.troubleBoard .${ss}Start` ).children();
 	let arrayOut = Object.entries(NewPositionArray)[0];
-	//console.log(arrayOut[1].style.borderColor);
-		
+	
 	//if the same color is in this position then cannot move
 	if (arrayOut[1].style.borderColor === pickedColorArray[1].className)
 	{
 		statusOut(`${flow.turn.name} -- you cannot move a piece out of home.  Try another piece or pass`);
-		//$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move a piece out of home.  Try another piece or pass`);
 		return 0;
 	}
 
@@ -332,10 +324,10 @@ function Home2Play(mainObj,obj,x) {
 	let pickedColorArrayClone = $( pickedColorArray[1] ).clone()
 	let NewPositionArrayClone = $( NewPositionArray[0] ).clone()
 
-	//the click action resides on the span element and not the div element.
+	//the click action resides on the span element and not the div element.  Safe to use replacewith!
 	$( pickedColorArray[1] ).replaceWith(NewPositionArrayClone);
 	$( NewPositionArray[0] ).replaceWith(pickedColorArrayClone);
-	$(mainObj).unbind();  							//remove the action as the space is now empty
+	$(mainObj).unbind();  							//remove the event as the space is now empty
 	
 	if (flow.diceCnt === 6) {
 		statusOut(`${flow.turn.name} -- Can Spin again`);
@@ -375,18 +367,17 @@ function move2Base (mainArr,diceCnt) {
 	if (mainArr.style.borderColor === pickedColorArray[1].style.borderColor)
 	{
 		statusOut(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
-		//$( ".statusOut" ).text(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
 		return 1;
 	}
 
 	let mainArrClone = $( mainArr ).clone()
 	let objClone = $( obj ).clone()
 
-	//the click action resides on the span element and not the div element.
+	//the click action resides on the span element and not the div element.  Safe to use replacewith!
 	$( mainArr ).replaceWith(objClone);
 	$( obj ).replaceWith(mainArrClone);
 
-//determine a winner ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//determine a winner upon moving a peg into the base-------------------------------------
 	flow.turn.win = flow.turn.win + 1;
 	if (flow.turn.win === 4)
 	{
@@ -432,7 +423,6 @@ function sendThemHome (mainArr) {
 	if (mainArr.style.borderColor === pickedColorArray[1].style.borderColor)
 	{
 		statusOut(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
-		//$( ".statusOut" ).text(`${flow.turn.name} -- You cannot move this piece to base.  Try another piece or pass`);
 		return 1;
 	}
 
@@ -440,8 +430,8 @@ function sendThemHome (mainArr) {
 	let objClone = $( obj ).clone()
 
 	//the click action resides on the span element and not the div element.
-	$( mainArr ).replaceWith(objClone);    //.click( mess2(array1[0]));
-	$( obj ).replaceWith(mainArrClone);      //.click( mess2(obj));;
+	$( mainArr ).replaceWith(objClone);
+	$( obj ).replaceWith(mainArrClone);
 
 	return 0;
 }
