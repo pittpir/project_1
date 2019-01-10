@@ -96,9 +96,6 @@ $( ".startGame" ).click(function() {
 	return 0;
 }); 
 
-
-
-
 //**************************************************************************************
 //This updates the Status dialog section.  Will flash when new message appears.
 //**************************************************************************************
@@ -187,7 +184,6 @@ function movePieceInPlay(obj,x) {
 		return 0;
 	}
 	
-
 	if (moveCnt > 27) {
 		moveCnt = moveCnt - 28;
 	}
@@ -303,8 +299,6 @@ function Home2Play(mainObj,obj,x) {
 //------------------------------------------------------------------------------------------------	
 	let pickedColorArray = Object.entries(obj)[0];
 	let ss = pickedColorArray[1].className;   //this should return the color of the peg that was picked
-
-
 	
 	//Is the player picking the correct color?
 	if (ss !== flow.turn.color)
@@ -313,7 +307,6 @@ function Home2Play(mainObj,obj,x) {
 		//$( ".statusOut" ).text(`${flow.turn.name} -- you cannot move this piece as it is not your Color`);
 		return 0;
 	}
-
 
 	let NewPositionArray = $( `.troubleBoard .${ss}Start` ).children();
 	let arrayOut = Object.entries(NewPositionArray)[0];
@@ -336,12 +329,12 @@ function Home2Play(mainObj,obj,x) {
 	}
 
 	//need to make a clone so I can swap the OBJs.
-	let cow = $( pickedColorArray[1] ).clone()
-	let horse = $( NewPositionArray[0] ).clone()
+	let pickedColorArrayClone = $( pickedColorArray[1] ).clone()
+	let NewPositionArrayClone = $( NewPositionArray[0] ).clone()
 
 	//the click action resides on the span element and not the div element.
-	$( pickedColorArray[1] ).replaceWith(horse);
-	$( NewPositionArray[0] ).replaceWith(cow);
+	$( pickedColorArray[1] ).replaceWith(NewPositionArrayClone);
+	$( NewPositionArray[0] ).replaceWith(pickedColorArrayClone);
 	$(mainObj).unbind();  							//remove the action as the space is now empty
 	
 	if (flow.diceCnt === 6) {
@@ -386,12 +379,12 @@ function move2Base (mainArr,diceCnt) {
 		return 1;
 	}
 
-	let cow = $( mainArr ).clone()
-	let horse = $( obj ).clone()
+	let mainArrClone = $( mainArr ).clone()
+	let objClone = $( obj ).clone()
 
 	//the click action resides on the span element and not the div element.
-	$( mainArr ).replaceWith(horse);
-	$( obj ).replaceWith(cow);
+	$( mainArr ).replaceWith(objClone);
+	$( obj ).replaceWith(mainArrClone);
 
 //determine a winner ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	flow.turn.win = flow.turn.win + 1;
@@ -443,12 +436,12 @@ function sendThemHome (mainArr) {
 		return 1;
 	}
 
-	let cow = $( mainArr ).clone()
-	let horse = $( obj ).clone()
+	let mainArrClone = $( mainArr ).clone()
+	let objClone = $( obj ).clone()
 
 	//the click action resides on the span element and not the div element.
-	$( mainArr ).replaceWith(horse);    //.click( mess2(array1[0]));
-	$( obj ).replaceWith(cow);      //.click( mess2(obj));;
+	$( mainArr ).replaceWith(objClone);    //.click( mess2(array1[0]));
+	$( obj ).replaceWith(mainArrClone);      //.click( mess2(obj));;
 
 	return 0;
 }
