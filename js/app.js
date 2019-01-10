@@ -1,5 +1,6 @@
 "use strict";
-
+//instruction link
+//https://www.hasbro.com/common/instruct/Trouble_(2002).pdf
 
 class Player {
 	constructor(name,color) {
@@ -16,22 +17,26 @@ class Move extends Player {
 		this.maxX = playerArray.length-1;
 		this.x = 0;
 		this.playerArray = playerArray;
-		//this.player1 = player1;
-		//this.player2 = player2;
-		//this.player3 = player3;
-		//this.player4 = player4;
 		this.diceCnt = 6;
 		this.spinDice = false;
 	}
 
 	newturn () {		
 		this.turn = playerArray[this.x];
+		console.log(playerArray);
 		$(".whosTurnNow").text(this.turn.name + "'s turn color " + this.turn.color);
 		$(".whosTurnNow").css("color", this.turn.color);
 		$(".pass").css("background-color", this.turn.color);
 		$(".spin").css("background-color", this.turn.color);
-		//console.log(this.x);
-		//console.log(this.turn.color);
+		
+		if (this.turn.color === "yellow") {
+			$(".pass").css("color", "black");
+			$(".spin").css("color", "black");
+		} else {
+			$(".pass").css("color", "white");
+			$(".spin").css("color", "white");
+		}
+
 		this.x++;
 		if (this.x>this.maxX) { this.x = 0; }
 		this.spinDice = false;
@@ -43,39 +48,32 @@ class Move extends Player {
 let flow = 0;
 let playerArray = [];
 
-/*
-$( "#colorPlayer1, #colorPlayer2, #colorPlayer3, #colorPlayer4" ).on("change", (function(array,index) {
-	console.log(this.id);
-	//$('.color option[value="'+this.value+'"]').prop("disabled", true);
-	console.log("#" + this.id + " option[value=" + this.value +"]")
-	$("#" + this.id + " option[value=" + this.value +"]").prop("disabled", true);
-	return 0; 
-}));
-*/
-
 //**************************************************************************************
-//This is the dice.  Add the click function to the button.  
+//This is the startGame Click function.  Determines how many players exist and which color
+//was selected for each player.  Will bark if same color is chosen or if less than 2 players. 
 //**************************************************************************************
-
 $( ".startGame" ).click(function() {
 	let flag = 0;
-	let color = "";
+	let color = [];
+	let color2 = "";
 	$( "select" ).filter(function (index) {
-		
-		if ( (color === this.value)  ) {
-			statusOut(`The color ${this.value} has already been picked.  Please select a different color`);
-			flag = 1;
-			return 0;
-		}
-		color = this.value;
+		color2 = this.value;
+		let found = color.find(function(element) {
+  			if (element === color2) {
+  				statusOut(`The color ${color2} has already been picked.  Please select a different color`);
+				flag = 1;
+				return 0;
+  			}
+  			return 0;
+		});
+
+		color.push(this.value);
 		return 0;
 	});
 	
 	if (flag) return 0;
 
 	$( "input" ).filter(function (index) {
-		//console.log(this.value);
-		//console.log(this.className);
 		if (this.value !== "") {
 			color = ( $("#color" + this.className)[0].value);
 			
@@ -91,8 +89,10 @@ $( ".startGame" ).click(function() {
 	}
 
 	flow = new Move(playerArray);
-	flow.newturn();
+	
 	$( ".startGame" ).prop("disabled", "true");
+	$(".startGame").css("background-color", "grey");
+	flow.newturn();
 	return 0;
 }); 
 
@@ -154,6 +154,7 @@ $( ".spin" ).click(function() {
 		flow.diceCnt = diceCnt;
 		flow.spinDice = true;
 	}
+	$(".spin").css("background-color", "rgb(224, 224, 224)");
 	
 	return 0;
 }); 
@@ -214,9 +215,18 @@ function movePieceInPlay(obj,x) {
 			//$( ".statusOut" ).text(`Congrat ${flow.turn.name} -- you made a piece to base!`);
 			flow.newturn();
 			return 0;
-		} else {
+		} else if (ret == 1) {
 			statusOut(`${flow.turn.name} -- you have a piece already in the base at the given space.  Pick another piece or pass.`);
 			currentPosition[1].style.order = oldMoveCnt;
+			return 0;
+		} else {
+			statusOut(`${flow.turn.name} -- won the Game`);
+			$(".whosTurnNow").text(`${flow.turn.name} -- won the Game`);
+			alert(`${flow.turn.name} -- won the Game`);
+			$(".troubleBoard").unbind();
+			$(".troubleHome").unbind();
+			$(".spin").unbind();
+			$(".pass").unbind();
 			return 0;
 		}		
 	} else if (currentPosition[1].style.order > 32) {
@@ -251,6 +261,7 @@ function movePieceInPlay(obj,x) {
 		
 		if (flow.diceCnt === 6) {
 			statusOut(`${flow.turn.name} -- Can Spin again`);
+			$(".spin").css("background-color", flow.turn.color);
 			flow.spinDice = false;
 			return 0;
 		}
@@ -335,6 +346,7 @@ function Home2Play(mainObj,obj,x) {
 	
 	if (flow.diceCnt === 6) {
 		statusOut(`${flow.turn.name} -- Can Spin again`);
+		$(".spin").css("background-color", flow.turn.color);
 		flow.spinDice = false;
 		return 0;
 	}
@@ -385,7 +397,7 @@ function move2Base (mainArr,diceCnt) {
 	flow.turn.win = flow.turn.win + 1;
 	if (flow.turn.win === 4)
 	{
-		statusOut(`${flow.turn.name} Won the Game`);
+		return 5;
 	}
 
 	return 0;

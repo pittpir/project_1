@@ -3,6 +3,7 @@
 <head>
 	<title>Trouble</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
 	<meta charset="UTF-8">
 	<link href="./css/style.css" rel="stylesheet" type="text/css">
 	<script
@@ -67,9 +68,10 @@
             <option value="green">Green</option>
           </select>
       </div>
+          <button type="button" class="startGame">Start Game</button>
     </fieldset>
 
-    <button type="button" class="startGame">Start Game</button>
+
      
     <fieldset class="whosTurn">
       <legend>Who's Turn is it?</legend>
@@ -80,6 +82,21 @@
       <legend>Status: </legend>
       <label class="statusOut">Populate the player Names and Chose a unique color!</label>
     </fieldset>
+    <fieldset class="instructions">
+      <legend>Instructions: </legend>
+      <ol>
+        <li>Fill out Player Names and pick a unique color.</li>
+        <li>Press START Game button to begin the game.</li>
+        <li>The STATUS bar will instruct players who's turn it is and if the move is legal.</li>
+        <li>Pegs move clockwise on the board. Just press the peg you wish to move!</li>
+        <li>Press the SPIN Button to roll the dice.</li>
+        <li>A Player must roll a 6 in order to move a peg from HOME to START.</li>
+        <li>Rolling a 6 allows the player to spin and move again</li>
+        <li>If your peg lands on a space already occupied by an opponent, the opponent's peg returns to its HOME position and your peg occupies the space. </li>
+        <li>A peg must rotate once around the field of play. Upon rotating once, a player can then enter the BASE and be free from other opponents. </li>
+        <li>A player wins when all 4 pegs are safely placed into the BASE</li>
+      </ol>
+    </fieldset>    
   </div> 
   <div class="spinner">
     <!-- <div class="or"><label class="spinText">6</label></div>  -->

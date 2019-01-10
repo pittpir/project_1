@@ -12,17 +12,92 @@ h1 {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+.instructions {
+	max-width: 700px;
+}
+.playerField {
+	display: inline-block;
+
+}
+.startGame {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 24px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  	position: relative;
+	top: 3px;
+	left:80px;
+	font-family: 'Shrikhand', cursive;
+}
+.startGame:hover {opacity: 1}
+.startGame:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.spin {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 24px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  	position: relative;
+	top: 370px;
+	left:-1195px;
+	font-family: 'Shrikhand', cursive;
+}
+.spin:hover {opacity: 1}
+.spin:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.pass {
+  background-color: #f4511e;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 24px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  	position: relative;
+	top: 180px;
+	left:-1325px;
+	font-family: 'Shrikhand', cursive;
+}
+.pass:hover {opacity: 1}
+.pass:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 .dicePic {
 	position: relative;
 	top: -560px;
 	left:350px;
 }
-.spinner{
-	position: relative;
-	top: 370px;
-	left:-985px;
-}
+
 .status {
 	min-width: 500px;
 	max-width: 500px;
